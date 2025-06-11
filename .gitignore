@@ -1,0 +1,12 @@
+/bin/
+/obj/
+/*.user
+*.suo
+__pycache__/
+*.pyc
+report.txt
+*.exe
+*.test
+.env
+*.log
+.DS_Store

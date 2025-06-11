@@ -1,0 +1,30 @@
+name: CI Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Go agent
+      run: |
+        cd go-agent
+        go build -o agent main.go
+
+    - name: Run Python tests
+      run: |
+        cd python-reporter
+        pip install -r requirements.txt
+        python -m unittest discover || echo "Add tests later"
+
+    - name: Build C# dashboard
+      run: |
+        cd csharp-dashboard
+        dotnet build

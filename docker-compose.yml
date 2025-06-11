@@ -1,0 +1,16 @@
+
+services:
+  go-agent:
+    build: ./go-agent
+    ports:
+      - "9000:9000"
+  python-reporter:
+    build: ./python-reporter
+    depends_on:
+      - go-agent
+  csharp-dashboard:
+    build: ./csharp-dashboard
+    ports:
+      - "8080:80"
+    depends_on:
+      - go-agent
